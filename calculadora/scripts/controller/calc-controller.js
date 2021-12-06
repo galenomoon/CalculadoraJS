@@ -3,6 +3,8 @@ class CalcControler { // Classe criada
     //propriedades do objeto
     constructor() {
         //Atributos que serão utilizados
+        this._audioOnOff = true;
+        this._audio = new Audio('click.mp3');
         this._lastOperator = '';
         this._lastNumber = '';
         this._operation = [];
@@ -27,6 +29,46 @@ class CalcControler { // Classe criada
             this.SetDisplayDataTime();
         }, 1000);
         this.setLastNumberToDisplay();
+        this.pasteFromClipboard()
+
+
+        document.querySelectorAll('.btn-ac').forEach(btn => {
+
+            btn.addEventListener('dbclick', e => {
+
+                this.toggleAudio();
+
+            });
+
+        })
+    }
+
+    toggleAudio() {
+
+        this._audioOnOff = !this._audioOnOff;
+
+    }
+
+    playAudio() {
+
+
+        if (this._audioOnOff) {
+
+            this._audio.currentTime = 0;
+            this._audio.play();
+
+        }
+
+    }
+
+
+    pasteFromClipboard() {
+        document.addEventListener('paste', e => {
+
+            let text = e.clipboardData.getData('Text');
+            this.displayCalc = parseFloat(text);
+
+        });
 
     }
 
@@ -41,7 +83,7 @@ class CalcControler { // Classe criada
 
         input.select();
 
-        document.execCommand("Copy");
+        document.execCommand("copy");
 
         input.remove();
 
@@ -50,7 +92,7 @@ class CalcControler { // Classe criada
     initKeyboard() {
 
         document.addEventListener('keyup', e => {
-
+            this.playAudio();
 
             switch (e.key) {
 
@@ -94,9 +136,6 @@ class CalcControler { // Classe criada
                     if (e.ctrlKey)
                         copyToClipboard()
                     break;
-
-
-
             }
 
         });
@@ -168,8 +207,16 @@ class CalcControler { // Classe criada
     getResult() {
 
 
+        try {
+            return eval(this._operation.join(""));
+        } catch (e) {
 
-        return eval(this._operation.join(""));;
+            setTimeout(() => {
+
+                this.setError();
+
+            }, 1)
+        }
     }
 
     calc() {
@@ -333,6 +380,8 @@ class CalcControler { // Classe criada
     // SWITCH CASE
     execBtn(value) {
 
+        this.playAudio();
+
         switch (value) {
 
             case 'ac':
@@ -447,6 +496,10 @@ class CalcControler { // Classe criada
     }
     set displayCalc(value) {
         this._displayCalcEl.innerHTML = value;
+        if (value.toString().length > 10) {
+            this.setError();
+            return false;
+        }
     }
 
     //=========== CURRENT DATE====================

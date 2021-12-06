@@ -40,7 +40,7 @@ console.log(a === b || typeof b == 'string');
 
 // // =======FOR================================================================
 // let n = 5;
-        ////Ponto de partida; ponto final; incremento a cada loop
+////Ponto de partida; ponto final; incremento a cada loop
 // for(let i = 0; i <= 10; i++){
 //     console.log(`${i} x ${n} = ${i*n}`);
 // }
@@ -76,7 +76,7 @@ console.log(a === b || typeof b == 'string');
 // =============CALCULADORA=EM=ARROW=FUNCTION===========================================================
 // ARROW FUNCTION | versão lite da FUNCTION, com MUITO MAIS RECURSO
 
-/* ========== ESTRUTURA DO ARROW FUNCTION ========== */                                               //MDS QUE BGL LINDO MEU PAI....
+/* ========== ESTRUTURA DO ARROW FUNCTION ========== */ //MDS QUE BGL LINDO MEU PAI....
 // - SEM FUNCTION
 // - declare a FUNCTION como sendo uma variáve (let, var, const)
 // - declare os "PLACEHOLDERS" que serão utilizados
@@ -152,19 +152,23 @@ console.log(a === b || typeof b == 'string');
 
 
 //declarar criação de classe
-class celular{  
-    //constrói o que há dentro da classe  
-    constructor(){
-        //this = atribua à esta classe
-        this.modelo = "J7 Neo"
-    }
-    // criando uma método
-    ligar(){
-        console.log("uma ligação")
-        return "ligando. . .";
-    }
-}
-// atribuindo tudo que há na classe à uma variável  
-let objeto = new celular();
-console.log(objeto);
-console.log(objeto.ligar());
+// class celular{  
+//     //constrói o que há dentro da classe  
+//     constructor(){
+//         //this = atribua à esta classe
+//         this.modelo = "J7 Neo"
+//     }
+//     // criando uma método
+//     ligar(){
+//         console.log("uma ligação")
+//         return "ligando. . .";
+//     }
+// }
+// // atribuindo tudo que há na classe à uma variável  
+// let objeto = new celular();
+// console.log(objeto);
+// console.log(objeto.ligar());
+
+
+//ARROW FUNCITON (()=>{})
+// SET INTERVAL | EXECUTA EM INTERVALOS DETERMINADA AÇÃO
